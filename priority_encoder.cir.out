@@ -1,0 +1,64 @@
+* c:\users\mistr\esim-workspace\priority_encoder\priority_encoder.cir
+
+* u8  net-_u5-pad5_ net-_u7-pad3_ net-_u12-pad1_ d_or
+* u11  net-_u11-pad1_ net-_u10-pad3_ net-_u11-pad3_ d_or
+* u9  net-_u5-pad5_ net-_u5-pad6_ net-_u11-pad1_ d_or
+* u10  net-_u10-pad1_ net-_u10-pad2_ net-_u10-pad3_ d_or
+* u7  net-_u6-pad2_ net-_u10-pad1_ net-_u7-pad3_ d_and
+* u6  net-_u5-pad6_ net-_u6-pad2_ d_inverter
+* u5  d3 d2 d1 d0 net-_u5-pad5_ net-_u5-pad6_ net-_u10-pad1_ net-_u10-pad2_ adc_bridge_4
+* u12  net-_u12-pad1_ net-_u11-pad1_ net-_u11-pad3_ y x v dac_bridge_3
+v1 d3 gnd  dc 0
+v2 d2 gnd  dc 0
+v3 d1 gnd  dc 0
+v4 d0 gnd  dc 5
+* u4  d0 plot_v1
+* u3  d1 plot_v1
+* u2  d2 plot_v1
+* u1  d3 plot_v1
+r1  y gnd esim_r
+r3  x gnd esim_r
+r2  v gnd esim_r
+* u14  y plot_v1
+* u15  x plot_v1
+* u13  v plot_v1
+a1 [net-_u5-pad5_ net-_u7-pad3_ ] net-_u12-pad1_ u8
+a2 [net-_u11-pad1_ net-_u10-pad3_ ] net-_u11-pad3_ u11
+a3 [net-_u5-pad5_ net-_u5-pad6_ ] net-_u11-pad1_ u9
+a4 [net-_u10-pad1_ net-_u10-pad2_ ] net-_u10-pad3_ u10
+a5 [net-_u6-pad2_ net-_u10-pad1_ ] net-_u7-pad3_ u7
+a6 net-_u5-pad6_ net-_u6-pad2_ u6
+a7 [d3 d2 d1 d0 ] [net-_u5-pad5_ net-_u5-pad6_ net-_u10-pad1_ net-_u10-pad2_ ] u5
+a8 [net-_u12-pad1_ net-_u11-pad1_ net-_u11-pad3_ ] [y x v ] u12
+* Schematic Name:                             d_or, NgSpice Name: d_or
+.model u8 d_or(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 ) 
+* Schematic Name:                             d_or, NgSpice Name: d_or
+.model u11 d_or(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 ) 
+* Schematic Name:                             d_or, NgSpice Name: d_or
+.model u9 d_or(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 ) 
+* Schematic Name:                             d_or, NgSpice Name: d_or
+.model u10 d_or(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 ) 
+* Schematic Name:                             d_and, NgSpice Name: d_and
+.model u7 d_and(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 ) 
+* Schematic Name:                             d_inverter, NgSpice Name: d_inverter
+.model u6 d_inverter(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 ) 
+* Schematic Name:                             adc_bridge_4, NgSpice Name: adc_bridge
+.model u5 adc_bridge(in_low=1.0 in_high=2.0 rise_delay=1.0e-9 fall_delay=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_3, NgSpice Name: dac_bridge
+.model u12 dac_bridge(out_low=0.0 out_high=5.0 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+.tran 2e-00 10e-00 0e-00
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+plot v(d0)
+plot v(d1)
+plot v(d2)
+plot v(d3)
+plot v(y)
+plot v(x)
+plot v(v)
+.endc
+.end

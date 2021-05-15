@@ -1,0 +1,32 @@
+* C:\Users\mistr\eSim-Workspace\priority_encoder\priority_encoder.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: 05/15/21 21:23:34
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+U8  Net-_U5-Pad5_ Net-_U7-Pad3_ Net-_U12-Pad1_ d_or		
+U11  Net-_U11-Pad1_ Net-_U10-Pad3_ Net-_U11-Pad3_ d_or		
+U9  Net-_U5-Pad5_ Net-_U5-Pad6_ Net-_U11-Pad1_ d_or		
+U10  Net-_U10-Pad1_ Net-_U10-Pad2_ Net-_U10-Pad3_ d_or		
+U7  Net-_U6-Pad2_ Net-_U10-Pad1_ Net-_U7-Pad3_ d_and		
+U6  Net-_U5-Pad6_ Net-_U6-Pad2_ d_inverter		
+U5  D3 D2 D1 D0 Net-_U5-Pad5_ Net-_U5-Pad6_ Net-_U10-Pad1_ Net-_U10-Pad2_ adc_bridge_4		
+U12  Net-_U12-Pad1_ Net-_U11-Pad1_ Net-_U11-Pad3_ y x v dac_bridge_3		
+v1  D3 GND DC		
+v2  D2 GND DC		
+v3  D1 GND DC		
+v4  D0 GND DC		
+U4  D0 plot_v1		
+U3  D1 plot_v1		
+U2  D2 plot_v1		
+U1  D3 plot_v1		
+R1  y GND eSim_R		
+R3  x GND eSim_R		
+R2  v GND eSim_R		
+U14  y plot_v1		
+U15  x plot_v1		
+U13  v plot_v1		
+
+.end
